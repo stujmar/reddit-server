@@ -1,3 +1,15 @@
-// import { exitCode } from "process";
+import { MikroORM } from "@mikro-orm/core"
+import { __prod__ } from "./constants";
+import { Post } from "./entities/Post";
 
-console.log('Hello Worlds');
+const main = async () => {
+  const orm = await MikroORM.init({
+    entities: [Post],
+    dbName: "reddit-server",
+    type: "postgresql",
+    debug: !__prod__,
+  });
+
+};
+
+main();
